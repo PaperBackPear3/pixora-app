@@ -10,7 +10,12 @@ export async function loader({ params }: Route.LoaderArgs) {
 
 // renders after the loader is done
 export default function Chat({ loaderData }: Route.ComponentProps) {
-  return <h1>{"loaderData.name"}</h1>;
+  return (
+    <>
+      <h1>{"loaderData.name"}</h1>
+      this is a chat componetnhtao
+    </>
+  );
 }
 function getTeam() {
   return { name: "mario" };
