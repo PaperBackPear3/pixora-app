@@ -1,15 +1,15 @@
 import { NavLink } from "react-router";
 
-export default function Home() {
+export default function About() {
   return (
     <div>
-      <h1>Unauth Home</h1>
+      <h1>About</h1>
       {/* will either be home.tsx or settings.tsx */}
-      <NavLink to="/login">Login</NavLink>
-      <NavLink to="/register">Register</NavLink>
+      <NavLink to="/auth/login">Login</NavLink>
+      <NavLink to="/auth/register">Register</NavLink>
       <NavLink to="/homepage/chat">Home</NavLink>
       <NavLink to="/homepage/chat">Chat</NavLink>
-      <NavLink to="/about">About</NavLink>
+      <NavLink to="/">Back</NavLink>
     </div>
   );
 }
