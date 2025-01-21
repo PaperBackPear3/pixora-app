@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Button } from "~/components/ui/button";
 
 const Register: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -45,7 +46,7 @@ const Register: React.FC = () => {
             required
           />
         </div>
-        <button type="submit">Register</button>
+        <Button type="submit">Register</Button>
       </form>
     </div>
   );

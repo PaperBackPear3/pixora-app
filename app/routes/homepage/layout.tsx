@@ -1,5 +1,6 @@
 import { NavLink, Outlet } from "react-router";
 import { useState } from "react";
+import { Button, buttonVariants } from "~/components/ui/button";
 
 export default function Layout() {
   const [isTopBarOpen, setIsTopBarOpen] = useState(false);
@@ -11,44 +12,37 @@ export default function Layout() {
   return (
     <div className="flex h-screen flex-col">
       <div
-        className={`relative top-0 left-0 right-0 bg-gray-800 text-white p-4 transition-all duration-300 ${
-          isTopBarOpen ? "h-full" : "h-12 sm:h-16"
+        className={`relative top-0 left-0 right-0 bg-gray-800 p-4 transition-all duration-300 gap-3 ${
+          isTopBarOpen
+            ? "h-full flex flex-col text-center"
+            : "h-12 sm:h-16 flex flex-row "
         }`}
       >
-        <div
-          className={`flex ${
-            isTopBarOpen ? "flex-col text-center" : "flex-row"
-          }`}
+        <Button
+          className="mb-4 text-white border border-white"
+          onClick={toggleSidebar}
         >
-          <button
-            className="mb-4 text-white border border-white"
-            onClick={toggleSidebar}
-          >
-            {isTopBarOpen ? "X" : "+"}
-          </button>
-          {isTopBarOpen ? (
-            <>
-              <NavLink to="/" end>
-                Home
-              </NavLink>
-              <NavLink to="/homepage" end>
-                HomePage
-              </NavLink>
-              <NavLink to="/homepage/chat">Homepage Chat</NavLink>
-              <NavLink to="/">Logout</NavLink>
-            </>
-          ) : (
-            <div className="flex space-x-2 ml-4">
-              <NavLink to="/" end>
-                Home
-              </NavLink>
-              <NavLink to="/homepage" end>
-                HomePage
-              </NavLink>
-              <NavLink to="/">Logout</NavLink>
-            </div>
-          )}
-        </div>
+          {isTopBarOpen ? "X" : "+"}
+        </Button>
+        <NavLink to="/" end className={buttonVariants({ variant: "outline" })}>
+          Home
+        </NavLink>
+        <NavLink
+          to="/homepage"
+          end
+          className={buttonVariants({ variant: "outline" })}
+        >
+          HomePage
+        </NavLink>
+        <NavLink
+          to="/homepage/chat"
+          className={buttonVariants({ variant: "outline" })}
+        >
+          Homepage Chat
+        </NavLink>
+        <NavLink to="/" className={buttonVariants({ variant: "outline" })}>
+          Logout
+        </NavLink>
       </div>
       <div className="flex-1 bg-gray-300 p-8">
         <Outlet />

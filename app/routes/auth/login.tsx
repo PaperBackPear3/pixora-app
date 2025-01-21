@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Button } from "~/components/ui/button";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -35,7 +36,7 @@ const Login: React.FC = () => {
             required
           />
         </div>
-        <button type="submit">Login</button>
+        <Button type="submit">Login</Button>
       </form>
     </div>
   );
