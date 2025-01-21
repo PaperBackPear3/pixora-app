@@ -2,7 +2,7 @@ import { NavLink, Outlet } from "react-router";
 import { useState } from "react";
 
 export default function Layout() {
-  const [isTopBarOpen, setIsTopBarOpen] = useState(true);
+  const [isTopBarOpen, setIsTopBarOpen] = useState(false);
 
   const toggleSidebar = () => {
     setIsTopBarOpen(!isTopBarOpen);
@@ -32,9 +32,10 @@ export default function Layout() {
                 Home
               </NavLink>
               <NavLink to="/homepage" end>
-                Home
+                HomePage
               </NavLink>
-              <NavLink to="/homepage/chat">Chat</NavLink>
+              <NavLink to="/homepage/chat">Homepage Chat</NavLink>
+              <NavLink to="/">Logout</NavLink>
             </>
           ) : (
             <div className="flex space-x-2 ml-4">
@@ -42,9 +43,9 @@ export default function Layout() {
                 Home
               </NavLink>
               <NavLink to="/homepage" end>
-                Home
+                HomePage
               </NavLink>
-              <NavLink to="/homepage/chat">Chat</NavLink>
+              <NavLink to="/">Logout</NavLink>
             </div>
           )}
         </div>
