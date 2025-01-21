@@ -9,9 +9,9 @@ export default function Layout() {
   };
 
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen flex-col">
       <div
-        className={`fixed top-0 left-0 right-0 bg-gray-800 text-white p-4 transition-all duration-300 ${
+        className={`relative top-0 left-0 right-0 bg-gray-800 text-white p-4 transition-all duration-300 ${
           isTopBarOpen ? "h-full" : "h-12 sm:h-16"
         }`}
       >
