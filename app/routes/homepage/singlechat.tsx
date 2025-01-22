@@ -1,6 +1,7 @@
+import { Link } from "react-router";
 import type { Route } from "./+types/singlechat";
 
-//provides `loaderData` to the component
+// provides `loaderData` to the component
 export async function loader({ params }: Route.LoaderArgs) {
   const chat = getChatMessages(Number(params.chatId));
   console.log("server");
@@ -9,6 +10,7 @@ export async function loader({ params }: Route.LoaderArgs) {
 
 // provides `loaderData` to the component
 export async function clientLoader({ params }: Route.ClientLoaderArgs) {
+  console.log(params);
   const chat = await getChatMessages(Number(params.chatId));
   //   console.log("client");
   return { chat };
@@ -30,20 +32,11 @@ export function HydrateFallback() {
 export default function SingleChat({ loaderData }: Route.ComponentProps) {
   return (
     <>
-      <h1>{"Single chat with ID:" + loaderData.chat.id}</h1>
-
-      {/* <div className="space-y-4"> */}
-      {/* <ScrollArea className="h-[calc(100vh-4rem)]">
-        {loaderData.chats.map((chat: ChatProps, index) => (
-          <SingleChatPreview
-            key={index}
-            avatarFallback={chat.avatarFallback}
-            avatarImage={chat.avatarImage}
-            chatLastMessage={chat.chatLastMessage}
-          />
-        ))}
-      </ScrollArea> */}
-      {/* </div> */}
+      <Link to={"/homepage/chat"} className="flex space-x-2">
+        Back
+      </Link>
+      <h1>{"Single chat with ID: " + loaderData.chat.id}</h1>
+      <p>{"Message " + loaderData.chat.chatLastMessage}</p>
     </>
   );
 }

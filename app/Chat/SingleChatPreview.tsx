@@ -40,7 +40,7 @@ export function SingleChatPreview({ ...props }: ChatProps) {
 
   return (
     <div className="space-y-2 pt-1">
-      <Link to={`/homepage/chat/:${chatId}`} className="flex space-x-2">
+      <Link to={`/homepage/chat/${chatId}`} className="flex space-x-2">
         <Avatar className="h-12 w-12">
           <AvatarImage src={avatarImage} alt="avatar" />
           <AvatarFallback>{avatarFallback}</AvatarFallback>
