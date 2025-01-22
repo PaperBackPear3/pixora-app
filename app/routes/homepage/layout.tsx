@@ -15,7 +15,7 @@ export default function Layout() {
     <div className="flex h-screen flex-col">
       <SidebarProvider>
         <AppSidebar />
-        <div className="flex-1 p-5 pb-0">
+        <div className="flex-1 p-5 pb-0 pt-0">
           <SidebarTrigger />
           <Outlet />
         </div>
