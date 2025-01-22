@@ -21,10 +21,11 @@ export type ChatProps = {
   avatarImage: string;
   avatarFallback: string;
   chatLastMessage: ChatLastMessage;
+  chatId?: number;
 };
 
 export function SingleChatPreview({ ...props }: ChatProps) {
-  const { avatarFallback, avatarImage, chatLastMessage } = props;
+  const { avatarFallback, avatarImage, chatLastMessage, chatId } = props;
 
   const statusIcons = {
     [StatusMessage.SENT]: <Check />,
@@ -39,7 +40,7 @@ export function SingleChatPreview({ ...props }: ChatProps) {
 
   return (
     <div className="space-y-2 pt-1">
-      <Link to="/" className="flex space-x-2">
+      <Link to={`/homepage/chat/:${chatId}`} className="flex space-x-2">
         <Avatar className="h-12 w-12">
           <AvatarImage src={avatarImage} alt="avatar" />
           <AvatarFallback>{avatarFallback}</AvatarFallback>

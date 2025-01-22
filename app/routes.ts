@@ -18,6 +18,7 @@ export default [
     layout("./routes/homepage/layout.tsx", [
       index("./routes/homepage/home.tsx"),
       route("chat", "./routes/homepage/chat.tsx"),
+      route("chat/:chatId", "./routes/homepage/singlechat.tsx"),
     ]),
   ]),
 ] satisfies RouteConfig;
