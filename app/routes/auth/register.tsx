@@ -16,9 +16,9 @@ const Register: React.FC = () => {
   };
 
   return (
-    <Card>
+    <Card className="w-5/6">
       <CardHeader>Login</CardHeader>
-      <CardContent>
+      <CardContent className="flex flex-col">
         <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor="email">Email:</label>
@@ -53,40 +53,6 @@ const Register: React.FC = () => {
         </form>
       </CardContent>
     </Card>
-    // <div className="login-container">
-    // <form onSubmit={handleSubmit}>
-    //   <div>
-    //     <label htmlFor="email">Email:</label>
-    //     <input
-    //       type="email"
-    //       id="email"
-    //       value={email}
-    //       onChange={(e) => setEmail(e.target.value)}
-    //       required
-    //     />
-    //   </div>
-    //   <div>
-    //     <label htmlFor="username">Username:</label>
-    //     <input
-    //       type="text"
-    //       id="username"
-    //       value={userName}
-    //       onChange={(e) => setUserName(e.target.value)}
-    //     />
-    //   </div>
-    //   <div>
-    //     <label htmlFor="password">Password:</label>
-    //     <input
-    //       type="password"
-    //       id="password"
-    //       value={password}
-    //       onChange={(e) => setPassword(e.target.value)}
-    //       required
-    //     />
-    //   </div>
-    //   <Button type="submit">Register</Button>
-    // </form>
-    // </div>
   );
 };
 
