@@ -31,7 +31,7 @@ export default function MainLayout() {
       >
         Chat
       </NavLink>
-      <main>
+      <main className="flex justify-center items-center min-h-screen">
         <Outlet />
       </main>
     </div>
