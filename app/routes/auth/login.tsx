@@ -16,7 +16,7 @@ const Login: React.FC = () => {
   };
 
   return (
-    <Card className={`${isMobile}? "w-5/6" : "w-1/3" `}>
+    <Card className={`${isMobile}? "w-5/6" : "w-1/3"`}>
       <CardHeader>Login</CardHeader>
       <CardContent className="flex flex-col">
         <form onSubmit={handleSubmit}>
