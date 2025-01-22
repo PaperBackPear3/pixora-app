@@ -1,6 +1,8 @@
 import { NavLink, Outlet } from "react-router";
 import { useState } from "react";
 import { Button, buttonVariants } from "~/components/ui/button";
+import { SidebarProvider, SidebarTrigger } from "~/components/ui/sidebar";
+import { AppSidebar } from "./sidebar/sidebar";
 
 export default function Layout() {
   const [isTopBarOpen, setIsTopBarOpen] = useState(false);
@@ -11,7 +13,7 @@ export default function Layout() {
 
   return (
     <div className="flex h-screen flex-col">
-      <div
+      {/* <div
         className={`relative top-0 left-0 right-0 bg-gray-800 p-4 transition-all duration-300 gap-3 ${
           isTopBarOpen
             ? "h-full flex flex-col text-center"
@@ -43,10 +45,14 @@ export default function Layout() {
         <NavLink to="/" className={buttonVariants({ variant: "outline" })}>
           Logout
         </NavLink>
-      </div>
-      <div className="flex-1 bg-gray-300 p-8">
-        <Outlet />
-      </div>
+      </div> */}
+      <SidebarProvider>
+        <AppSidebar />
+        <main className="flex-1 p-8">
+          <SidebarTrigger />
+          <Outlet />
+        </main>
+      </SidebarProvider>
     </div>
   );
 }
