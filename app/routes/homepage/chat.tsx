@@ -9,15 +9,17 @@ import { SingleChatSkeleton } from "~/Chat/SingleChatSkeleton";
 import type { Route } from "./+types/chat";
 import { ScrollArea } from "~/components/ui/scroll-area";
 
-// provides `loaderData` to the component
-// export async function loader({ params }: Route.LoaderArgs) {
-//   const chats = await getChats();
-//   return { chats };
-// }
+//provides `loaderData` to the component
+export async function loader({ params }: Route.LoaderArgs) {
+  const chats = await getChats();
+  console.log("server");
+  return { chats };
+}
 
 // provides `loaderData` to the component
 export async function clientLoader({ params }: Route.ClientLoaderArgs) {
   const chats = await getChats();
+  console.log("client");
   return { chats };
 }
 
@@ -39,12 +41,13 @@ export default function Chat({ loaderData }: Route.ComponentProps) {
       <h1>{"Chats"}</h1>
       {/* <div className="space-y-4"> */}
       <ScrollArea className="h-[calc(100vh-4rem)]">
-        {loaderData.chats.map((chat: ChatProps) => (
+        {loaderData.chats.map((chat: ChatProps, index) => (
           <SingleChatPreview
-            key={chat.avatarFallback}
+            key={index}
             avatarFallback={chat.avatarFallback}
             avatarImage={chat.avatarImage}
             chatLastMessage={chat.chatLastMessage}
+            chatId={index}
           />
         ))}
       </ScrollArea>
@@ -52,6 +55,7 @@ export default function Chat({ loaderData }: Route.ComponentProps) {
     </>
   );
 }
+
 function getChats(): ChatProps[] {
   return [
     {
@@ -108,7 +112,7 @@ function getChats(): ChatProps[] {
       avatarImage: "",
       avatarFallback: "U2",
       chatLastMessage: {
-        lastMessage: "read my message?",
+        lastMessage: "read my dddclient??",
         sender: "Mario mi scrive",
         status: StatusMessage.RECEIVED,
         deliveredTime: "04:01",
