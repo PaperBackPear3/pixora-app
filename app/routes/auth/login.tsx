@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "~/components/ui/button";
+import { Card, CardContent, CardHeader } from "~/components/ui/card";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -13,8 +14,9 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="login-container">
-      <h2>Login</h2>
+    <Card className="w-5/6">
+      <CardHeader>Login</CardHeader>
+      <CardContent className="flex flex-col"></CardContent>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="email">Email:</label>
@@ -38,7 +40,7 @@ const Login: React.FC = () => {
         </div>
         <Button type="submit">Login</Button>
       </form>
-    </div>
+    </Card>
   );
 };
 

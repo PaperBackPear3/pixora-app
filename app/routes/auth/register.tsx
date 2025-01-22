@@ -17,7 +17,7 @@ const Register: React.FC = () => {
 
   return (
     <Card className="w-5/6">
-      <CardHeader>Login</CardHeader>
+      <CardHeader>Register</CardHeader>
       <CardContent className="flex flex-col">
         <form onSubmit={handleSubmit}>
           <div>
