@@ -44,7 +44,7 @@ export function SingleChatPreview({ ...props }: ChatProps) {
         <Avatar className="h-12 w-12">
           <AvatarImage src={avatarImage} alt="avatar" />
           <AvatarFallback>{avatarFallback}</AvatarFallback>
-        </Avatar>{" "}
+        </Avatar>
         <div className="flex-1 flex-col">
           <div className="flex">
             <div className="h-6 font-bold flex-1 w-max">

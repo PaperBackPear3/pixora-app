@@ -1,5 +1,7 @@
 import { Link } from "react-router";
 import type { Route } from "./+types/singlechat";
+import SingleChatComponent from "~/Chat/SingleChatComponent";
+import { StatusMessage } from "~/Chat/SingleChatPreview";
 
 // provides `loaderData` to the component
 export async function loader({ params }: Route.LoaderArgs) {
@@ -32,11 +34,10 @@ export function HydrateFallback() {
 export default function SingleChat({ loaderData }: Route.ComponentProps) {
   return (
     <>
-      <Link to={"/homepage/chat"} className="flex space-x-2">
-        Back
-      </Link>
-      <h1>{"Single chat with ID: " + loaderData.chat.id}</h1>
-      <p>{"Message " + loaderData.chat.chatLastMessage}</p>
+      <SingleChatComponent
+        name={loaderData.chat.chatLastMessage.sender}
+        profileImage={loaderData.chat.avatarImage}
+      ></SingleChatComponent>
     </>
   );
 }
@@ -45,21 +46,49 @@ function getChatMessages(chatId: number) {
   const allChats = [
     {
       id: 1,
-      chatLastMessage: "Hello there!",
+      avatarImage: "https://example.com/avatar1.png",
+      avatarFallback: "U1",
+      chatLastMessage: {
+        lastMessage: "Hello!",
+        sender: "Mario inviato",
+        status: StatusMessage.SENT,
+        deliveredTime: "10:29",
+      },
     },
     {
       id: 2,
-      chatLastMessage: "How are you?",
+      avatarImage: "https://example.com/avatar2.png",
+      avatarFallback: "U2",
+      chatLastMessage: {
+        lastMessage: "How are you?",
+        sender: "Luigi inviato",
+        status: StatusMessage.DELIVERED,
+        deliveredTime: "11:00",
+      },
     },
     {
       id: 3,
-      chatLastMessage: "Good morning!",
+      avatarImage: "https://example.com/avatar3.png",
+      avatarFallback: "U3",
+      chatLastMessage: {
+        lastMessage: "Good morning!",
+        sender: "Peach inviato",
+        status: StatusMessage.READ,
+        deliveredTime: "09:15",
+      },
     },
   ];
 
   const chat = allChats.find((chat) => chat.id === chatId) ?? {
-    id: 0,
-    chatLastMessage: "error",
+    id: 3,
+    avatarImage: "https://example.com/avatar3.png",
+    avatarFallback: "U3",
+    chatLastMessage: {
+      lastMessage: "Good morning!",
+      sender: "Peach inviato",
+      status: StatusMessage.READ,
+      deliveredTime: "09:15",
+    },
   };
   return chat;
 }
