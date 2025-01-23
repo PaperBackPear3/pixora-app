@@ -1,6 +1,10 @@
+import { ArrowLeft, Camera } from "lucide-react";
 import React, { useState } from "react";
 import { Link } from "react-router";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
+import { Button } from "~/components/ui/button";
+import { Input } from "~/components/ui/input";
+import { Separator } from "~/components/ui/separator";
 
 interface SingleChatProps {
   profileImage: string;
@@ -15,6 +19,24 @@ const SingleChatComponent: React.FC<SingleChatProps> = ({
   const [chatHistory, setChatHistory] = useState([
     { id: "1", text: "Hello!", sender: "other" },
     { id: "2", text: "Hi there!", sender: "me" },
+    { id: "3", text: "How are you?", sender: "other" },
+    { id: "4", text: "I'm good, thanks!", sender: "me" },
+    { id: "5", text: "What about you?", sender: "me" },
+    { id: "6", text: "I'm doing well too!", sender: "other" },
+    { id: "7", text: "That's great to hear!", sender: "other" },
+    { id: "8", text: "What have you been up to?", sender: "other" },
+    { id: "9", text: "Just working on some projects.", sender: "me" },
+    { id: "10", text: "Sounds interesting!", sender: "other" },
+    { id: "11", text: "Sounds interesting!", sender: "other" },
+    { id: "12", text: "Sounds interesting!", sender: "other" },
+    { id: "13", text: "Sounds interesting!", sender: "other" },
+    { id: "14", text: "Sounds interesting!", sender: "other" },
+    {
+      id: "15",
+      text: "Check out this picture!",
+      sender: "me",
+      imageUrl: "https://picsum.photos/seed/picsum/200/300",
+    },
   ]);
 
   const sendMessage = () => {
@@ -27,7 +49,12 @@ const SingleChatComponent: React.FC<SingleChatProps> = ({
     }
   };
 
-  const renderItem = (item: { id: string; text: string; sender: string }) => (
+  const renderItem = (item: {
+    id: string;
+    text: string;
+    sender: string;
+    imageUrl?: string;
+  }) => (
     <div
       className={`p-2 rounded-lg ${
         item.sender === "me"
@@ -36,44 +63,56 @@ const SingleChatComponent: React.FC<SingleChatProps> = ({
       }`}
       key={item.id}
     >
+      {item.imageUrl ? (
+        <img
+          src={item.imageUrl}
+          alt="chat image"
+          className="max-w-xs rounded mb-2"
+        />
+      ) : null}
       <p>{item.text}</p>
     </div>
   );
 
   return (
-    <div className="container mx-auto p-4">
-      <div className="header flex items-center space-x-4 mb-4">
-        <Link to={"/homepage/chat"} className="text-blue-500 hover:underline">
-          Back
-        </Link>
-        <Avatar className="h-12 w-12">
-          <AvatarImage src={profileImage} alt="avatar" />
-          <AvatarFallback>{"PP"}</AvatarFallback>
-        </Avatar>
-        <span className="name font-semibold text-lg">{name}</span>
+    <div className="max-w-full mx-auto sm:max-w-lg h-[calc(100vh-4rem)] flex flex-col">
+      <div className="flex items-center space-x-4 mb-4 sticky top-0 bg-white">
+        <div className="flex items-center">
+          <Link
+            to={"/homepage/chat"}
+            className="text-blue-500 hover:underline flex items-center"
+          >
+            <ArrowLeft className="w-5 h-5 mr-1" />
+          </Link>
+          <Avatar className="h-12 w-12">
+            <AvatarImage src={profileImage} alt="avatar" />
+            <AvatarFallback>{"PP"}</AvatarFallback>
+          </Avatar>
+        </div>
+        <span className="font-semibold text-lg flex-1">{name}</span>
       </div>
-      <div className="chatHistory flex flex-col space-y-2 mb-4">
+      {/* <div> */}
+      <Separator />
+      <div className="flex flex-col space-y-2 mb-4 flex-1 overflow-y-auto">
         {chatHistory.map(renderItem)}
       </div>
-      <div className="inputContainer flex space-x-2">
-        <input
-          className="input flex-1 border rounded p-2"
+      {/* </div> */}
+      <div className="flex space-x-2 sticky bottom-0 bg-white">
+        <Button variant="outline" size="icon">
+          <Camera className="w-5 h-5" />
+        </Button>
+        <Input
+          className="flex-1 border rounded p-2"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Type a message"
         />
-        <button
+        <Button
           className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
           onClick={sendMessage}
         >
           Send
-        </button>
-        <button
-          className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
-          onClick={() => {}}
-        >
-          Add Image
-        </button>
+        </Button>
       </div>
     </div>
   );
