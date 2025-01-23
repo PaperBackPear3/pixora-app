@@ -1,4 +1,4 @@
-import { ArrowLeft, Camera } from "lucide-react";
+import { ArrowLeft, Camera, Send } from "lucide-react";
 import React, { useState } from "react";
 import { Link } from "react-router";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
@@ -37,6 +37,7 @@ const SingleChatComponent: React.FC<SingleChatProps> = ({
       sender: "me",
       imageUrl: "https://picsum.photos/seed/picsum/200/300",
     },
+    { id: "15", text: "Sounds interesting!", sender: "other" },
   ]);
 
   const sendMessage = () => {
@@ -76,7 +77,7 @@ const SingleChatComponent: React.FC<SingleChatProps> = ({
 
   return (
     <div className="max-w-full mx-auto sm:max-w-lg h-[calc(100vh-4rem)] flex flex-col">
-      <div className="flex items-center space-x-4 mb-4 sticky top-0 bg-white">
+      <div className="flex items-center space-x-4 mb-4 sticky top-0 bg-white pl-1">
         <div className="flex items-center">
           <Link
             to={"/homepage/chat"}
@@ -93,16 +94,18 @@ const SingleChatComponent: React.FC<SingleChatProps> = ({
       </div>
       {/* <div> */}
       <Separator />
-      <div className="flex flex-col space-y-2 mb-4 flex-1 overflow-y-auto">
-        {chatHistory.map(renderItem)}
+      <div className="flex flex-col flex-1 overflow-y-auto">
+        <div className="flex flex-col pr-1.5 scroll-pr-2 pl-1.5 space-y-2 mb-4">
+          {chatHistory.map(renderItem)}
+        </div>
       </div>
       {/* </div> */}
-      <div className="flex space-x-2 sticky bottom-0 bg-white">
+      <div className="flex space-x-2 sticky bottom-0 bg-white p-1">
         <Button variant="outline" size="icon">
           <Camera className="w-5 h-5" />
         </Button>
         <Input
-          className="flex-1 border rounded p-2"
+          className="flex-1"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Type a message"
@@ -111,7 +114,7 @@ const SingleChatComponent: React.FC<SingleChatProps> = ({
           className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
           onClick={sendMessage}
         >
-          Send
+          <Send className="w-5 h-5" />
         </Button>
       </div>
     </div>

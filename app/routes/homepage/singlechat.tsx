@@ -33,12 +33,10 @@ export function HydrateFallback() {
 // renders after the loader is done
 export default function SingleChat({ loaderData }: Route.ComponentProps) {
   return (
-    <>
-      <SingleChatComponent
-        name={loaderData.chat.chatLastMessage.sender}
-        profileImage={loaderData.chat.avatarImage}
-      ></SingleChatComponent>
-    </>
+    <SingleChatComponent
+      name={loaderData.chat.chatLastMessage.sender}
+      profileImage={loaderData.chat.avatarImage}
+    ></SingleChatComponent>
   );
 }
 

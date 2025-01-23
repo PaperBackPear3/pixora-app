@@ -8,6 +8,7 @@ import {
 import { SingleChatSkeleton } from "~/Chat/SingleChatSkeleton";
 import type { Route } from "./+types/chat";
 import { ScrollArea } from "~/components/ui/scroll-area";
+import { Separator } from "~/components/ui/separator";
 
 //provides `loaderData` to the component
 export async function loader({ params }: Route.LoaderArgs) {
@@ -37,22 +38,23 @@ export function HydrateFallback() {
 // renders after the loader is done
 export default function Chat({ loaderData }: Route.ComponentProps) {
   return (
-    <>
+    <div className="p-4">
       <h1>{"Chats"}</h1>
-      {/* <div className="space-y-4"> */}
       <ScrollArea className="h-[calc(100vh-4rem)]">
         {loaderData.chats.map((chat: ChatProps, index) => (
-          <SingleChatPreview
-            key={index}
-            avatarFallback={chat.avatarFallback}
-            avatarImage={chat.avatarImage}
-            chatLastMessage={chat.chatLastMessage}
-            chatId={index}
-          />
+          <div className="space-y-2 pt-1">
+            <SingleChatPreview
+              key={index}
+              avatarFallback={chat.avatarFallback}
+              avatarImage={chat.avatarImage}
+              chatLastMessage={chat.chatLastMessage}
+              chatId={index}
+            />
+            <Separator className="" />
+          </div>
         ))}
       </ScrollArea>
-      {/* </div> */}
-    </>
+    </div>
   );
 }
 
