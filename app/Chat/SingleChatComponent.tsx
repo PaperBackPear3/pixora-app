@@ -76,8 +76,8 @@ const SingleChatComponent: React.FC<SingleChatProps> = ({
   );
 
   return (
-    <div className="max-w-full mx-auto sm:max-w-lg h-[calc(100vh-4rem)] flex flex-col">
-      <div className="flex items-center space-x-4 mb-4 sticky top-0 bg-white pl-1">
+    <div className="max-w-full mx-auto sm:max-w-lg h-dvh flex flex-col">
+      <div className="flex items-center space-x-4 sticky top-0 bg-white p-1">
         <div className="flex items-center">
           <Link
             to={"/homepage/chat"}
