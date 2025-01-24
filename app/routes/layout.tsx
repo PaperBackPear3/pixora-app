@@ -20,7 +20,7 @@ export default function MainLayout() {
         Register
       </NavLink>
       <NavLink
-        to="/homepage"
+        to="/homepage/home"
         className={buttonVariants({ variant: "outline" })}
       >
         HomePage

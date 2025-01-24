@@ -17,12 +17,13 @@ import {
   SidebarGroupLabel,
   SidebarGroupAction,
   SidebarGroupContent,
+  SidebarTrigger,
 } from "~/components/ui/sidebar";
 
 const items = [
   {
     title: "Home Page",
-    url: "/homepage",
+    url: "/homepage/home",
     icon: Home,
   },
   {
@@ -34,8 +35,10 @@ const items = [
 
 export function AppSidebar() {
   return (
-    <Sidebar variant="floating">
-      <SidebarHeader />
+    <Sidebar variant="floating" collapsible="icon">
+      <SidebarHeader>
+        <SidebarTrigger />
+      </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>Quick Actions</SidebarGroupLabel>
