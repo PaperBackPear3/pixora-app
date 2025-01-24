@@ -11,7 +11,7 @@ export default function Layout() {
           <AppSidebar />
         </SidebarProvider>
       </div>
-      <div className="flex flex-1 md:h-dvh overflow-hidden">
+      <div className="flex flex-1 md:h-dvh overflow-hidden p-2">
         <Outlet />
       </div>
       <div className="flex md:hidden sticky bottom-0 w-full">
