@@ -5,16 +5,18 @@ import BottomTabNavigator from "./sidebar/bottomTab";
 
 export default function Layout() {
   return (
-    <SidebarProvider>
-      <div className="flex flex-col">
-        <AppSidebar />
-        <div className="flex flex-1 flex-grow">
-          <Outlet />
-        </div>
-        <div className="flex md:hidden sticky bottom-0 w-screen">
-          <BottomTabNavigator />
-        </div>
+    <div className="flex flex-col md:flex-row">
+      <div className="hidden md:flex">
+        <SidebarProvider>
+          <AppSidebar />
+        </SidebarProvider>
       </div>
-    </SidebarProvider>
+      <div className="flex flex-1 md:h-auto">
+        <Outlet />
+      </div>
+      <div className="flex md:hidden sticky bottom-0 w-screen">
+        <BottomTabNavigator />
+      </div>
+    </div>
   );
 }
