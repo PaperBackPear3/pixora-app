@@ -5,13 +5,13 @@ import BottomTabNavigator from "./sidebar/bottomTab";
 
 export default function Layout() {
   return (
-    <div className="flex flex-col md:flex-row">
+    <div className="flex flex-1 flex-col md:flex-row">
       <div className="hidden md:flex">
         <SidebarProvider>
           <AppSidebar />
         </SidebarProvider>
       </div>
-      <div className="flex flex-1 md:h-auto">
+      <div className="flex flex-1 md:h-dvh">
         <Outlet />
       </div>
       <div className="flex md:hidden sticky bottom-0 w-screen">

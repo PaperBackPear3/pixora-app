@@ -38,7 +38,7 @@ export function HydrateFallback() {
 // renders after the loader is done
 export default function Chat({ loaderData }: Route.ComponentProps) {
   return (
-    <div className="flex flex-1 flex-col h-dvh p-4">
+    <div className="flex flex-1 flex-col h-dvh">
       <h1>{"Chats"}</h1>
       <ScrollArea className="h-dvh">
         {loaderData.chats.map((chat: ChatProps, index) => (
