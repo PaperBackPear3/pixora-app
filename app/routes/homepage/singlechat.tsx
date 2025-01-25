@@ -4,11 +4,11 @@ import SingleChatComponent from "~/Chat/SingleChatComponent";
 import { MessageStatuses } from "~/Chat/types";
 
 // provides `loaderData` to the component
-export async function loader({ params }: Route.LoaderArgs) {
-  const chat = getChatMessages(Number(params.chatId));
-  console.log("server");
-  return { chat };
-}
+// export async function loader({ params }: Route.LoaderArgs) {
+//   const chat = getChatMessages(Number(params.chatId));
+//   console.log("server");
+//   return { chat };
+// }
 
 // provides `loaderData` to the component
 export async function clientLoader({ params }: Route.ClientLoaderArgs) {
@@ -19,16 +19,16 @@ export async function clientLoader({ params }: Route.ClientLoaderArgs) {
 }
 
 // HydrateFallback is rendered while the client loader is running
-export function HydrateFallback() {
-  return (
-    <div>loading...</div>
-    // <ScrollArea className="h-[calc(100vh-4rem)]">
-    //   {Array.from({ length: 10 }).map((_, index) => (
-    //     <SingleChatSkeleton key={index} />
-    //   ))}
-    // </ScrollArea>
-  );
-}
+// export function HydrateFallback() {
+//   return (
+//     <div>loading...</div>
+//     // <ScrollArea className="h-[calc(100vh-4rem)]">
+//     //   {Array.from({ length: 10 }).map((_, index) => (
+//     //     <SingleChatSkeleton key={index} />
+//     //   ))}
+//     // </ScrollArea>
+//   );
+// }
 
 // renders after the loader is done
 export default function SingleChat({ loaderData }: Route.ComponentProps) {
