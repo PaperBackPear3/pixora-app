@@ -1,40 +1,19 @@
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import { Check, CheckCheck } from "lucide-react";
 import { Link } from "react-router";
-import { Separator } from "~/components/ui/separator";
-
-export enum StatusMessage {
-  SENT = "sent",
-  DELIVERED = "delivered",
-  READ = "read",
-  RECEIVED = "received",
-}
-
-type ChatLastMessage = {
-  lastMessage: string;
-  sender: string;
-  status: StatusMessage;
-  deliveredTime: string;
-};
-
-export type ChatProps = {
-  avatarImage: string;
-  avatarFallback: string;
-  chatLastMessage: ChatLastMessage;
-  chatId?: number;
-};
+import { MessageStatuses, type ChatProps } from "./types";
 
 export function SingleChatPreview({ ...props }: ChatProps) {
   const { avatarFallback, avatarImage, chatLastMessage, chatId } = props;
 
   const statusIcons = {
-    [StatusMessage.SENT]: <Check />,
-    [StatusMessage.DELIVERED]: <CheckCheck />,
-    [StatusMessage.READ]: <CheckCheck color="#66c861" />,
+    [MessageStatuses.SENT]: <Check />,
+    [MessageStatuses.DELIVERED]: <CheckCheck />,
+    [MessageStatuses.READ]: <CheckCheck color="#66c861" />,
   };
 
   const statusIcon =
-    chatLastMessage.status !== StatusMessage.RECEIVED
+    chatLastMessage.status !== MessageStatuses.RECEIVED
       ? statusIcons[chatLastMessage.status]
       : null;
 
@@ -51,10 +30,10 @@ export function SingleChatPreview({ ...props }: ChatProps) {
           </div>
           <div className="flex flex-row">
             {statusIcon}
-            <div className="h-3 ">{chatLastMessage.deliveredTime}</div>
+            <div className="h-3 ">{chatLastMessage.deliveredAt.toString()}</div>
           </div>
         </div>
-        <div className="h-4 w-[200px]">{chatLastMessage.lastMessage}</div>
+        <div className="h-4 w-[200px]">{chatLastMessage.text}</div>
       </div>
     </Link>
   );

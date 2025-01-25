@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import type { Route } from "./+types/singlechat";
 import SingleChatComponent from "~/Chat/SingleChatComponent";
-import { StatusMessage } from "~/Chat/SingleChatPreview";
+import { MessageStatuses } from "~/Chat/types";
 
 // provides `loaderData` to the component
 export async function loader({ params }: Route.LoaderArgs) {
@@ -49,7 +49,7 @@ function getChatMessages(chatId: number) {
       chatLastMessage: {
         lastMessage: "Hello!",
         sender: "Mario inviato",
-        status: StatusMessage.SENT,
+        status: MessageStatuses.SENT,
         deliveredTime: "10:29",
       },
     },
@@ -60,7 +60,7 @@ function getChatMessages(chatId: number) {
       chatLastMessage: {
         lastMessage: "How are you?",
         sender: "Luigi inviato",
-        status: StatusMessage.DELIVERED,
+        status: MessageStatuses.DELIVERED,
         deliveredTime: "11:00",
       },
     },
@@ -71,7 +71,7 @@ function getChatMessages(chatId: number) {
       chatLastMessage: {
         lastMessage: "Good morning!",
         sender: "Peach inviato",
-        status: StatusMessage.READ,
+        status: MessageStatuses.READ,
         deliveredTime: "09:15",
       },
     },
@@ -84,7 +84,7 @@ function getChatMessages(chatId: number) {
     chatLastMessage: {
       lastMessage: "Good morning!",
       sender: "Peach inviato",
-      status: StatusMessage.READ,
+      status: MessageStatuses.READ,
       deliveredTime: "09:15",
     },
   };

@@ -5,6 +5,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Separator } from "~/components/ui/separator";
+import type { Message } from "./types";
+import { testMessages } from "./test";
 
 interface SingleChatProps {
   profileImage: string;
@@ -16,46 +18,20 @@ const SingleChatComponent: React.FC<SingleChatProps> = ({
   name,
 }) => {
   const [message, setMessage] = useState("");
-  const [chatHistory, setChatHistory] = useState([
-    { id: "1", text: "Hello!", sender: "other" },
-    { id: "2", text: "Hi there!", sender: "me" },
-    { id: "3", text: "How are you?", sender: "other" },
-    { id: "4", text: "I'm good, thanks!", sender: "me" },
-    { id: "5", text: "What about you?", sender: "me" },
-    { id: "6", text: "I'm doing well too!", sender: "other" },
-    { id: "7", text: "That's great to hear!", sender: "other" },
-    { id: "8", text: "What have you been up to?", sender: "other" },
-    { id: "9", text: "Just working on some projects.", sender: "me" },
-    { id: "10", text: "Sounds interesting!", sender: "other" },
-    { id: "11", text: "Sounds interesting!", sender: "other" },
-    { id: "12", text: "Sounds interesting!", sender: "other" },
-    { id: "13", text: "Sounds interesting!", sender: "other" },
-    { id: "14", text: "Sounds interesting!", sender: "other" },
-    {
-      id: "15",
-      text: "Check out this picture!",
-      sender: "me",
-      imageUrl: "https://picsum.photos/seed/picsum/200/300",
-    },
-    { id: "15", text: "Sounds interesting!", sender: "other" },
-  ]);
+
+  const [chatHistory, setChatHistory] = useState<Message[]>(testMessages);
 
   const sendMessage = () => {
-    if (message.trim()) {
-      setChatHistory([
-        ...chatHistory,
-        { id: Date.now().toString(), text: message, sender: "me" },
-      ]);
-      setMessage("");
-    }
+    // if (message.trim()) {
+    //   setChatHistory([
+    //     ...chatHistory,
+    //     { id: Date.now().toString(), text: message, sender: "me" },
+    //   ]);
+    //   setMessage("");
+    // }
   };
 
-  const renderItem = (item: {
-    id: string;
-    text: string;
-    sender: string;
-    imageUrl?: string;
-  }) => (
+  const renderItem = (item: Message) => (
     <div
       className={`p-2 rounded-lg ${
         item.sender === "me"

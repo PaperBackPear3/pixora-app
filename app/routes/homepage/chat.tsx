@@ -1,14 +1,11 @@
 // provides type safety/inference
 
-import {
-  SingleChatPreview,
-  StatusMessage,
-  type ChatProps,
-} from "~/Chat/SingleChatPreview";
+import { SingleChatPreview } from "~/Chat/SingleChatPreview";
 import { SingleChatSkeleton } from "~/Chat/SingleChatSkeleton";
 import type { Route } from "./+types/chat";
 import { ScrollArea } from "~/components/ui/scroll-area";
 import { Separator } from "~/components/ui/separator";
+import { MessageStatuses, MessageTypes, type ChatProps } from "~/Chat/types";
 
 //provides `loaderData` to the component
 export async function loader({ params }: Route.LoaderArgs) {
@@ -64,140 +61,14 @@ function getChats(): ChatProps[] {
       avatarImage: "https://example.com/avatar1.png",
       avatarFallback: "U1",
       chatLastMessage: {
-        lastMessage: "Hello!",
+        text: "Hello!",
         sender: "Mario inviato",
-        status: StatusMessage.SENT,
-        deliveredTime: "10:29",
-      },
-    },
-    {
-      avatarImage: "",
-      avatarFallback: "U2",
-      chatLastMessage: {
-        lastMessage: "How are you?",
-        sender: "Mario riceve",
-        status: StatusMessage.DELIVERED,
-        deliveredTime: "10:29",
-      },
-    },
-    {
-      avatarImage: "",
-      avatarFallback: "U2",
-      chatLastMessage: {
-        lastMessage: "this message was read?",
-        sender: "Mario legge",
-        status: StatusMessage.READ,
-        deliveredTime: "16:59",
-      },
-    },
-    {
-      avatarImage: "",
-      avatarFallback: "U2",
-      chatLastMessage: {
-        lastMessage: "read my message?",
-        sender: "Mario mi scrive",
-        status: StatusMessage.RECEIVED,
-        deliveredTime: "04:01",
-      },
-    },
-    {
-      avatarImage: "",
-      avatarFallback: "U2",
-      chatLastMessage: {
-        lastMessage: "read my message?",
-        sender: "Mario mi scrive",
-        status: StatusMessage.RECEIVED,
-        deliveredTime: "04:01",
-      },
-    },
-    {
-      avatarImage: "",
-      avatarFallback: "U2",
-      chatLastMessage: {
-        lastMessage: "read my dddclient??",
-        sender: "Mario mi scrive",
-        status: StatusMessage.RECEIVED,
-        deliveredTime: "04:01",
-      },
-    },
-    {
-      avatarImage: "",
-      avatarFallback: "U2",
-      chatLastMessage: {
-        lastMessage: "read my message?",
-        sender: "Mario mi scrive",
-        status: StatusMessage.READ,
-        deliveredTime: "04:01",
-      },
-    },
-    {
-      avatarImage: "",
-      avatarFallback: "U2",
-      chatLastMessage: {
-        lastMessage: "read my message?",
-        sender: "Mario mi scrive",
-        status: StatusMessage.READ,
-        deliveredTime: "04:01",
-      },
-    },
-    {
-      avatarImage: "",
-      avatarFallback: "U2",
-      chatLastMessage: {
-        lastMessage: "read my message?",
-        sender: "Mario mi scrive",
-        status: StatusMessage.SENT,
-        deliveredTime: "04:01",
-      },
-    },
-    {
-      avatarImage: "",
-      avatarFallback: "U2",
-      chatLastMessage: {
-        lastMessage: "read my message?",
-        sender: "Mario mi scrive",
-        status: StatusMessage.SENT,
-        deliveredTime: "04:01",
-      },
-    },
-    {
-      avatarImage: "",
-      avatarFallback: "U2",
-      chatLastMessage: {
-        lastMessage: "read my message?",
-        sender: "Mario mi scrive",
-        status: StatusMessage.RECEIVED,
-        deliveredTime: "04:01",
-      },
-    },
-    {
-      avatarImage: "",
-      avatarFallback: "U2",
-      chatLastMessage: {
-        lastMessage: "read my message?",
-        sender: "Mario mi scrive",
-        status: StatusMessage.RECEIVED,
-        deliveredTime: "04:01",
-      },
-    },
-    {
-      avatarImage: "",
-      avatarFallback: "U2",
-      chatLastMessage: {
-        lastMessage: "read my message?",
-        sender: "Mario mi scrive",
-        status: StatusMessage.READ,
-        deliveredTime: "04:01",
-      },
-    },
-    {
-      avatarImage: "",
-      avatarFallback: "U2",
-      chatLastMessage: {
-        lastMessage: "read my message?",
-        sender: "Mario mi scrive",
-        status: StatusMessage.DELIVERED,
-        deliveredTime: "04:01",
+        status: MessageStatuses.SENT,
+        deliveredAt: new Date(),
+        id: 0,
+        chatId: 0,
+        readAt: new Date(),
+        type: MessageTypes.TEXT,
       },
     },
   ];
