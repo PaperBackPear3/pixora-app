@@ -38,15 +38,17 @@ const SingleChatComponent: React.FC<SingleChatProps> = ({
           ? "bg-blue-500 text-white self-end"
           : "bg-gray-300 text-black self-start"
       }`}
-      key={item.id}
+      key={item.messageId}
     >
-      {item.imageUrl ? (
-        <img
-          src={item.imageUrl}
-          alt="chat image"
-          className="max-w-xs rounded mb-2"
-        />
-      ) : null}
+      {item.images
+        ? item.images.map((image) => (
+            <img
+              src={image.imageUrl}
+              alt={image.imageAlt}
+              className="max-w-xs rounded mb-2"
+            />
+          ))
+        : null}
       <p>{item.text}</p>
     </div>
   );

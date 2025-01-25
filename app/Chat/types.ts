@@ -18,7 +18,7 @@ export type ChatProps = {
 };
 
 export interface Message {
-  id: number;
+  messageId: number;
   chatId: number;
   text: string;
   sender: string;
@@ -26,9 +26,16 @@ export interface Message {
   deliveredAt: string;
   readAt: string;
   type: MessageTypes;
-  imageUrl?: string;
+  images?: Images[];
+  cost: number;
 }
 
+export type Images = {
+  imageId: number;
+  imageUrl: string;
+  imageAlt: string;
+  isLocked: boolean;
+};
 // export interface ImageMessage extends Message {
 //   type: MessageTypes.IMAGE;
 // }
