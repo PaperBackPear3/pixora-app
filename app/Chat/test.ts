@@ -1,4 +1,9 @@
-import { MessageStatuses, MessageTypes, type Message } from "./types";
+import {
+  MessageStatuses,
+  MessageTypes,
+  type ChatProps,
+  type Message,
+} from "./types";
 
 export const testMessages: Message[] = [
   {
@@ -7,8 +12,8 @@ export const testMessages: Message[] = [
     sender: "other",
     chatId: 1,
     status: MessageStatuses.RECEIVED,
-    deliveredAt: new Date(),
-    readAt: new Date(),
+    deliveredAt: new Date().toISOString(),
+    readAt: new Date().toISOString(),
     type: MessageTypes.TEXT,
   },
   {
@@ -17,8 +22,8 @@ export const testMessages: Message[] = [
     sender: "me",
     chatId: 1,
     status: MessageStatuses.DELIVERED,
-    deliveredAt: new Date(),
-    readAt: new Date(),
+    deliveredAt: new Date().toISOString(),
+    readAt: new Date().toISOString(),
     type: MessageTypes.TEXT,
   },
   {
@@ -27,8 +32,8 @@ export const testMessages: Message[] = [
     sender: "other",
     chatId: 1,
     status: MessageStatuses.DELIVERED,
-    deliveredAt: new Date(),
-    readAt: new Date(),
+    deliveredAt: new Date().toISOString(),
+    readAt: new Date().toISOString(),
     type: MessageTypes.TEXT,
   },
   {
@@ -37,8 +42,8 @@ export const testMessages: Message[] = [
     sender: "me",
     chatId: 1,
     status: MessageStatuses.DELIVERED,
-    deliveredAt: new Date(),
-    readAt: new Date(),
+    deliveredAt: new Date().toISOString(),
+    readAt: new Date().toISOString(),
     type: MessageTypes.TEXT,
   },
   {
@@ -47,8 +52,8 @@ export const testMessages: Message[] = [
     sender: "me",
     chatId: 1,
     status: MessageStatuses.DELIVERED,
-    deliveredAt: new Date(),
-    readAt: new Date(),
+    deliveredAt: new Date().toISOString(),
+    readAt: new Date().toISOString(),
     type: MessageTypes.TEXT,
   },
   {
@@ -57,8 +62,8 @@ export const testMessages: Message[] = [
     sender: "other",
     chatId: 1,
     status: MessageStatuses.DELIVERED,
-    deliveredAt: new Date(),
-    readAt: new Date(),
+    deliveredAt: new Date().toISOString(),
+    readAt: new Date().toISOString(),
     type: MessageTypes.TEXT,
   },
   {
@@ -67,8 +72,8 @@ export const testMessages: Message[] = [
     sender: "other",
     chatId: 1,
     status: MessageStatuses.DELIVERED,
-    deliveredAt: new Date(),
-    readAt: new Date(),
+    deliveredAt: new Date().toISOString(),
+    readAt: new Date().toISOString(),
     type: MessageTypes.TEXT,
   },
   {
@@ -77,8 +82,8 @@ export const testMessages: Message[] = [
     sender: "other",
     chatId: 1,
     status: MessageStatuses.DELIVERED,
-    deliveredAt: new Date(),
-    readAt: new Date(),
+    deliveredAt: new Date().toISOString(),
+    readAt: new Date().toISOString(),
     type: MessageTypes.TEXT,
   },
   {
@@ -87,8 +92,8 @@ export const testMessages: Message[] = [
     sender: "me",
     chatId: 1,
     status: MessageStatuses.DELIVERED,
-    deliveredAt: new Date(),
-    readAt: new Date(),
+    deliveredAt: new Date().toISOString(),
+    readAt: new Date().toISOString(),
     type: MessageTypes.TEXT,
   },
   {
@@ -97,8 +102,8 @@ export const testMessages: Message[] = [
     sender: "other",
     chatId: 1,
     status: MessageStatuses.DELIVERED,
-    deliveredAt: new Date(),
-    readAt: new Date(),
+    deliveredAt: new Date().toISOString(),
+    readAt: new Date().toISOString(),
     type: MessageTypes.TEXT,
   },
   {
@@ -107,8 +112,8 @@ export const testMessages: Message[] = [
     sender: "other",
     chatId: 1,
     status: MessageStatuses.DELIVERED,
-    deliveredAt: new Date(),
-    readAt: new Date(),
+    deliveredAt: new Date().toISOString(),
+    readAt: new Date().toISOString(),
     type: MessageTypes.TEXT,
   },
   {
@@ -117,8 +122,8 @@ export const testMessages: Message[] = [
     sender: "other",
     chatId: 1,
     status: MessageStatuses.DELIVERED,
-    deliveredAt: new Date(),
-    readAt: new Date(),
+    deliveredAt: new Date().toISOString(),
+    readAt: new Date().toISOString(),
     type: MessageTypes.TEXT,
   },
   {
@@ -127,8 +132,8 @@ export const testMessages: Message[] = [
     sender: "other",
     chatId: 1,
     status: MessageStatuses.DELIVERED,
-    deliveredAt: new Date(),
-    readAt: new Date(),
+    deliveredAt: new Date().toISOString(),
+    readAt: new Date().toISOString(),
     type: MessageTypes.TEXT,
   },
   {
@@ -137,8 +142,8 @@ export const testMessages: Message[] = [
     sender: "other",
     chatId: 1,
     status: MessageStatuses.DELIVERED,
-    deliveredAt: new Date(),
-    readAt: new Date(),
+    deliveredAt: new Date().toISOString(),
+    readAt: new Date().toISOString(),
     type: MessageTypes.TEXT,
   },
   {
@@ -148,8 +153,8 @@ export const testMessages: Message[] = [
     imageUrl: "https://picsum.photos/seed/picsum/200/300",
     chatId: 1,
     status: MessageStatuses.READ,
-    deliveredAt: new Date(),
-    readAt: new Date(),
+    deliveredAt: new Date().toISOString(),
+    readAt: new Date().toISOString(),
     type: MessageTypes.IMAGE,
   },
   {
@@ -158,8 +163,85 @@ export const testMessages: Message[] = [
     sender: "other",
     chatId: 1,
     status: MessageStatuses.DELIVERED,
-    deliveredAt: new Date(),
-    readAt: new Date(),
+    deliveredAt: new Date().toISOString(),
+    readAt: new Date().toISOString(),
     type: MessageTypes.TEXT,
+  },
+];
+
+export const testChat: ChatProps[] = [
+  {
+    avatarImage: "https://example.com/avatar1.png",
+    avatarFallback: "U1",
+    chatLastMessage: {
+      text: "Hello!",
+      sender: "Mario inviato",
+      status: MessageStatuses.SENT,
+      deliveredAt: new Date().toISOString(),
+      id: 0,
+      chatId: 0,
+      readAt: new Date().toISOString(),
+      type: MessageTypes.TEXT,
+    },
+    chatId: 1,
+  },
+  {
+    avatarImage: "https://example.com/avatar2.png",
+    avatarFallback: "U2",
+    chatLastMessage: {
+      text: "Hi there!",
+      sender: "Luigi",
+      status: MessageStatuses.RECEIVED,
+      deliveredAt: new Date().toISOString(),
+      id: 1,
+      chatId: 1,
+      readAt: new Date().toISOString(),
+      type: MessageTypes.TEXT,
+    },
+    chatId: 2,
+  },
+  {
+    avatarImage: "https://example.com/avatar3.png",
+    avatarFallback: "U3",
+    chatLastMessage: {
+      text: "How are you?",
+      sender: "Peach",
+      status: MessageStatuses.DELIVERED,
+      deliveredAt: new Date().toISOString(),
+      id: 2,
+      chatId: 1,
+      readAt: new Date().toISOString(),
+      type: MessageTypes.TEXT,
+    },
+    chatId: 3,
+  },
+  {
+    avatarImage: "https://example.com/avatar4.png",
+    avatarFallback: "U4",
+    chatLastMessage: {
+      text: "I'm good, thanks!",
+      sender: "Toad",
+      status: MessageStatuses.READ,
+      deliveredAt: new Date().toISOString(),
+      id: 3,
+      chatId: 1,
+      readAt: new Date().toISOString(),
+      type: MessageTypes.TEXT,
+    },
+    chatId: 4,
+  },
+  {
+    avatarImage: "https://example.com/avatar5.png",
+    avatarFallback: "U5",
+    chatLastMessage: {
+      text: "What about you?",
+      sender: "Yoshi",
+      status: MessageStatuses.DELIVERED,
+      deliveredAt: new Date().toISOString(),
+      id: 4,
+      chatId: 1,
+      readAt: new Date().toISOString(),
+      type: MessageTypes.TEXT,
+    },
   },
 ];

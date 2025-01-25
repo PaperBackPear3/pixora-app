@@ -5,7 +5,8 @@ import { SingleChatSkeleton } from "~/Chat/SingleChatSkeleton";
 import type { Route } from "./+types/chat";
 import { ScrollArea } from "~/components/ui/scroll-area";
 import { Separator } from "~/components/ui/separator";
-import { MessageStatuses, MessageTypes, type ChatProps } from "~/Chat/types";
+import { type ChatProps } from "~/Chat/types";
+import { testChat } from "~/Chat/test";
 
 //provides `loaderData` to the component
 export async function loader({ params }: Route.LoaderArgs) {
@@ -56,20 +57,5 @@ export default function Chat({ loaderData }: Route.ComponentProps) {
 }
 
 function getChats(): ChatProps[] {
-  return [
-    {
-      avatarImage: "https://example.com/avatar1.png",
-      avatarFallback: "U1",
-      chatLastMessage: {
-        text: "Hello!",
-        sender: "Mario inviato",
-        status: MessageStatuses.SENT,
-        deliveredAt: new Date(),
-        id: 0,
-        chatId: 0,
-        readAt: new Date(),
-        type: MessageTypes.TEXT,
-      },
-    },
-  ];
+  return testChat;
 }

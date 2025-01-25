@@ -23,8 +23,8 @@ export interface Message {
   text: string;
   sender: string;
   status: MessageStatuses;
-  deliveredAt: Date;
-  readAt: Date;
+  deliveredAt: string;
+  readAt: string;
   type: MessageTypes;
   imageUrl?: string;
 }
