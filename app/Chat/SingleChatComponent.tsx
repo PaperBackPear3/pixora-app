@@ -1,12 +1,13 @@
 import { ArrowLeft, Camera, Send } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Separator } from "~/components/ui/separator";
-import type { Message } from "./types";
+import { MessageStatuses, MessageTypes, type Message } from "./types";
 import { testMessages } from "./test";
+import { chatSocket } from "~/socketio/socketio";
 
 interface SingleChatProps {
   profileImage: string;
@@ -17,18 +18,43 @@ const SingleChatComponent: React.FC<SingleChatProps> = ({
   profileImage,
   name,
 }) => {
+  chatSocket.connect();
   const [message, setMessage] = useState("");
 
   const [chatHistory, setChatHistory] = useState<Message[]>(testMessages);
 
-  const sendMessage = () => {
-    // if (message.trim()) {
-    //   setChatHistory([
-    //     ...chatHistory,
-    //     { id: Date.now().toString(), text: message, sender: "me" },
-    //   ]);
-    //   setMessage("");
-    // }
+  useEffect(() => {
+    function onNewMessageEvent(data: { text: Message; socketid: string }) {
+      console.log(data);
+      setChatHistory([...chatHistory, data.text]);
+    }
+    chatSocket.on("new_message_event", onNewMessageEvent);
+
+    return () => {
+      chatSocket.off("new_message_event", onNewMessageEvent);
+    };
+  }, [chatSocket, chatHistory]);
+
+  const sendMessage = (message: string) => {
+    if (message.trim()) {
+      const messageData: Message = {
+        messageId: `${chatSocket.id}${Math.random()}`,
+        chatId: "0",
+        text: message,
+        sender: "me",
+        status: MessageStatuses.SENT,
+        deliveredAt: "",
+        readAt: "",
+        type: MessageTypes.TEXT,
+        cost: 0,
+      };
+
+      chatSocket.emit("new_message_event", {
+        text: messageData,
+        socketID: chatSocket.id,
+      });
+    }
+    setMessage("");
   };
 
   const renderItem = (item: Message) => (
@@ -90,7 +116,7 @@ const SingleChatComponent: React.FC<SingleChatProps> = ({
         />
         <Button
           className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-          onClick={sendMessage}
+          onClick={() => sendMessage(message)}
         >
           <Send className="w-5 h-5" />
         </Button>

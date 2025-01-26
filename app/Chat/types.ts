@@ -18,8 +18,8 @@ export type ChatProps = {
 };
 
 export interface Message {
-  messageId: number;
-  chatId: number;
+  messageId: string;
+  chatId: string;
   text: string;
   sender: string;
   status: MessageStatuses;
