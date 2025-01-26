@@ -1,12 +1,12 @@
 // provides type safety/inference
 
-import { SingleChatPreview } from "~/Chat/SingleChatPreview";
-import { SingleChatSkeleton } from "~/Chat/SingleChatSkeleton";
 import type { Route } from "./+types/chat";
 import { ScrollArea } from "~/components/ui/scroll-area";
-import { Separator } from "~/components/ui/separator";
 import { type ChatProps } from "~/Chat/types";
 import { testChat } from "~/Chat/test";
+import React from "react";
+import Chats from "~/Chat/Chats";
+import { SingleChatSkeleton } from "~/Chat/SingleChatSkeleton";
 
 //provides `loaderData` to the component
 // export async function loader({ params }: Route.LoaderArgs) {
@@ -16,9 +16,10 @@ import { testChat } from "~/Chat/test";
 // }
 
 // provides `loaderData` to the component
-export async function clientLoader({ params }: Route.ClientLoaderArgs) {
-  const chats = await getChats();
-  console.log("client");
+export async function clientLoader({}: Route.ClientLoaderArgs) {
+  let chats = new Promise<ChatProps[]>((resolve) =>
+    setTimeout(() => resolve(getChats()), 5000)
+  );
   return { chats };
 }
 
@@ -35,22 +36,15 @@ export async function clientLoader({ params }: Route.ClientLoaderArgs) {
 
 // renders after the loader is done
 export default function Chat({ loaderData }: Route.ComponentProps) {
+  let { chats } = loaderData;
+
   return (
     <div className="flex flex-1 flex-col">
       <h1>{"Chats"}</h1>
       <ScrollArea>
-        {loaderData.chats.map((chat: ChatProps, index) => (
-          <div className="space-y-2 pt-1">
-            <SingleChatPreview
-              key={index}
-              avatarFallback={chat.avatarFallback}
-              avatarImage={chat.avatarImage}
-              chatLastMessage={chat.chatLastMessage}
-              chatId={index}
-            />
-            <Separator className="" />
-          </div>
-        ))}
+        <React.Suspense fallback={<SingleChatSkeleton />}>
+          <Chats chatList={chats}></Chats>
+        </React.Suspense>
       </ScrollArea>
     </div>
   );
