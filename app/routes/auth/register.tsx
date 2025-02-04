@@ -2,17 +2,19 @@ import React, { useState } from "react";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardHeader } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
+import { authApi } from "~/api";
 
 const Register: React.FC = () => {
   const [email, setEmail] = useState("");
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    // Handle login logic here
-    console.log("Email:", email);
-    console.log("Password:", password);
+    try {
+      const res = await authApi.register({ email: email, password: password });
+      console.log(res);
+    } catch (error) {}
   };
 
   return (

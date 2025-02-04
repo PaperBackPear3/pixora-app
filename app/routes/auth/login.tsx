@@ -3,16 +3,18 @@ import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardHeader } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
 import { useIsMobile } from "~/hooks/use-mobile";
+import { authApi } from "~/api";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const isMobile = useIsMobile();
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    // Handle login logic here
-    console.log("Email:", email);
-    console.log("Password:", password);
+    try {
+      const res = await authApi.login({ email: email, password: password });
+      console.log(res);
+    } catch (error) {}
   };
 
   return (

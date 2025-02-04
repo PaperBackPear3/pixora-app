@@ -18,7 +18,7 @@ import { SingleChatSkeleton } from "~/Chat/SingleChatSkeleton";
 // provides `loaderData` to the component
 export async function clientLoader({}: Route.ClientLoaderArgs) {
   let chats = new Promise<ChatProps[]>((resolve) =>
-    setTimeout(() => resolve(getChats()), 1000)
+    setTimeout(() => resolve(getChats()), 0)
   );
   return { chats };
 }
